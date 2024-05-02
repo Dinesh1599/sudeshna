@@ -1,23 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {  useState } from 'react'
 
 function App() {
+  const [tInput, settInput] = useState('')
+  const[selectedFile, setSelectedFile] = useState(null);
+
+  const handleTextChange = (text) => {
+    settInput(text);
+  }
+
+  const handleFileChange = (x)=>{
+    setSelectedFile(x)
+  }
+
+  const submitInput = (event)=>{
+    event.preventDefault();
+    console.log(tInput, selectedFile)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className = "InputField">
+        <form onSubmit={submitInput} >
+          <label>
+            Text input:
+            <input value={tInput} onChange={(e)=>{handleTextChange(e.target.value)}} type="text" name="name" /><br/>
+          </label>
+          <label>
+            File input:
+            <input type="file" onChange={(e)=>handleFileChange(e.target.files[0])} />
+          </label>
+          <button type='submit'>Submit</button>
+        </form>
+
+      </div>
     </div>
   );
 }
