@@ -13,6 +13,7 @@ function App() {
     setSelectedFile(x)
   }
 
+  // PROVIDE GET API REQUEST HERE TO UPLOAD TO DYNAMO DB
   const submitInput = (event)=>{
     event.preventDefault();
     console.log(tInput, selectedFile)
